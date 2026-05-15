@@ -528,38 +528,16 @@
 
       <div class="filter-group">
         <div class="filter-group-title">Fabric</div>
-        <div class="filter-options" id="fabric-filters">
-          <button class="filter-btn active" data-filter="fabric" data-value="all" onclick="setFilter('fabric','all',this)">All Fabrics <span class="filter-count">6</span></button>
-          <button class="filter-btn" data-filter="fabric" data-value="silk" onclick="setFilter('fabric','silk',this)">Silk <span class="filter-count">4</span></button>
-          <button class="filter-btn" data-filter="fabric" data-value="cotton" onclick="setFilter('fabric','cotton',this)">Cotton <span class="filter-count">1</span></button>
-          <button class="filter-btn" data-filter="fabric" data-value="georgette" onclick="setFilter('fabric','georgette',this)">Georgette <span class="filter-count">1</span></button>
-          <button class="filter-btn" data-filter="fabric" data-value="silk-cotton" onclick="setFilter('fabric','silk-cotton',this)">Silk Cotton <span class="filter-count">1</span></button>
-        </div>
+        <div class="filter-options" id="fabric-filters"><span style="font-size:12px;color:var(--text-muted)">Loading…</span></div>
       </div>
-
       <div class="filter-group">
         <div class="filter-group-title">Occasion</div>
-        <div class="filter-options">
-          <button class="filter-btn active" data-filter="occasion" data-value="all" onclick="setFilter('occasion','all',this)">All Occasions <span class="filter-count">6</span></button>
-          <button class="filter-btn" data-filter="occasion" data-value="bridal" onclick="setFilter('occasion','bridal',this)">Bridal <span class="filter-count">2</span></button>
-          <button class="filter-btn" data-filter="occasion" data-value="festive" onclick="setFilter('occasion','festive',this)">Festive <span class="filter-count">3</span></button>
-          <button class="filter-btn" data-filter="occasion" data-value="casual" onclick="setFilter('occasion','casual',this)">Casual <span class="filter-count">1</span></button>
-        </div>
+        <div class="filter-options" id="occasion-filters"><span style="font-size:12px;color:var(--text-muted)">Loading…</span></div>
       </div>
-
       <div class="filter-group">
         <div class="filter-group-title">Region</div>
-        <div class="filter-options">
-          <button class="filter-btn active" data-filter="region" data-value="all" onclick="setFilter('region','all',this)">All Regions <span class="filter-count">6</span></button>
-          <button class="filter-btn" data-filter="region" data-value="tamilnadu" onclick="setFilter('region','tamilnadu',this)">Tamil Nadu <span class="filter-count">1</span></button>
-          <button class="filter-btn" data-filter="region" data-value="up" onclick="setFilter('region','up',this)">Uttar Pradesh <span class="filter-count">1</span></button>
-          <button class="filter-btn" data-filter="region" data-value="maharashtra" onclick="setFilter('region','maharashtra',this)">Maharashtra <span class="filter-count">1</span></button>
-          <button class="filter-btn" data-filter="region" data-value="gujarat" onclick="setFilter('region','gujarat',this)">Gujarat <span class="filter-count">1</span></button>
-          <button class="filter-btn" data-filter="region" data-value="mp" onclick="setFilter('region','mp',this)">Madhya Pradesh <span class="filter-count">1</span></button>
-          <button class="filter-btn" data-filter="region" data-value="karnataka" onclick="setFilter('region','karnataka',this)">Karnataka <span class="filter-count">1</span></button>
-        </div>
+        <div class="filter-options" id="region-filters"><span style="font-size:12px;color:var(--text-muted)">Loading…</span></div>
       </div>
-
       <button class="filter-clear" onclick="clearAllFilters()">Clear All Filters</button>
     </aside>
 
@@ -599,207 +577,233 @@
   </footer>
 
   <script>
-    const sarees = [
-      {
-        id: 1,
-        name: "Crimson Kanjivaram Silk",
-        fabric: "silk",
-        occasion: "bridal",
-        region: "tamilnadu",
-        regionLabel: "Tamil Nadu",
-        swatch: "swatch-kanjivaram",
-        desc: "Deep crimson with gold zari borders. Woven on pit looms in Kanchipuram.",
-        tags: ["Zari Work", "Wedding", "Heavy Silk"],
-        badge: "New Arrival",
-        badgeClass: "new"
-      },
-      {
-        id: 2,
-        name: "Royal Banarasi Silk",
-        fabric: "silk",
-        occasion: "bridal",
-        region: "up",
-        regionLabel: "Uttar Pradesh",
-        swatch: "swatch-banarasi",
-        desc: "Deep royal blue with intricate silver brocade from Varanasi.",
-        tags: ["Brocade", "Bridal", "Silver Zari"],
-        badge: null
-      },
-      {
-        id: 3,
-        name: "Ivory Chanderi Silk Cotton",
-        fabric: "silk-cotton",
-        occasion: "festive",
-        region: "mp",
-        regionLabel: "Madhya Pradesh",
-        swatch: "swatch-chanderi",
-        desc: "Gossamer-light ivory weave with delicate butti motifs.",
-        tags: ["Festive", "Lightweight", "Butti"],
-        badge: null
-      },
-      {
-        id: 4,
-        name: "Pink Bandhani Georgette",
-        fabric: "georgette",
-        occasion: "casual",
-        region: "gujarat",
-        regionLabel: "Gujarat",
-        swatch: "swatch-bandhani",
-        desc: "Vibrant tie-dye artistry in rose and magenta. Hand-knotted in Jamnagar.",
-        tags: ["Tie-Dye", "Casual", "Handcrafted"],
-        badge: null
-      },
-      {
-        id: 5,
-        name: "Emerald Paithani Silk",
-        fabric: "silk",
-        occasion: "festive",
-        region: "maharashtra",
-        regionLabel: "Maharashtra",
-        swatch: "swatch-paithani",
-        desc: "Rich emerald green with peacock motif border. A Maharashtrian treasure.",
-        tags: ["Peacock Motif", "Festival", "Pure Silk"],
-        badge: "Heritage Piece"
-      },
-      {
-        id: 6,
-        name: "Amethyst Mysore Silk",
-        fabric: "silk",
-        occasion: "festive",
-        region: "karnataka",
-        regionLabel: "Karnataka",
-        swatch: "swatch-mysore",
-        desc: "Luminous deep purple with golden border. Produced under the Karnataka Silk Industries.",
-        tags: ["GI Tagged", "Pure Silk", "Gold Border"],
-        badge: null
+    // ── CONFIG — paste your Google Sheet ID here ──────────────────────────────
+    const SHEET_ID = 'YOUR_SHEET_ID_HERE';
+    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
+
+    // ── COLOR → CSS GRADIENT MAP ──────────────────────────────────────────────
+    const swatchMap = {
+      crimson:     'linear-gradient(135deg,#8B0000 0%,#C41E3A 30%,#8B0000 70%,#6B0000 100%)',
+      red:         'linear-gradient(135deg,#8B0000 0%,#C41E3A 40%,#8B0000 100%)',
+      maroon:      'linear-gradient(135deg,#800000 0%,#B22222 40%,#800000 100%)',
+      blue:        'linear-gradient(135deg,#1B3A6B 0%,#2E5FA3 30%,#1B3A6B 60%,#142D52 100%)',
+      'royal blue':'linear-gradient(135deg,#1B3A6B 0%,#2E5FA3 40%,#1B3A6B 100%)',
+      navy:        'linear-gradient(135deg,#001a4d 0%,#003080 40%,#001a4d 100%)',
+      ivory:       'linear-gradient(135deg,#F5F0E8 0%,#E8DCC8 30%,#F5F0E8 60%,#EDE4D0 100%)',
+      white:       'linear-gradient(135deg,#F5F0E8 0%,#E8DCC8 40%,#F5F0E8 100%)',
+      cream:       'linear-gradient(135deg,#FFF8E7 0%,#EDE0C4 40%,#FFF8E7 100%)',
+      pink:        'linear-gradient(135deg,#C44B8A 0%,#E8729A 30%,#C44B8A 60%,#A33572 100%)',
+      rose:        'linear-gradient(135deg,#C44B8A 0%,#E8729A 40%,#C44B8A 100%)',
+      magenta:     'linear-gradient(135deg,#8B0067 0%,#CC0099 40%,#8B0067 100%)',
+      green:       'linear-gradient(135deg,#2D6B45 0%,#3D8B5E 30%,#2D6B45 60%,#1E4A30 100%)',
+      emerald:     'linear-gradient(135deg,#2D6B45 0%,#3D8B5E 40%,#2D6B45 100%)',
+      teal:        'linear-gradient(135deg,#008080 0%,#20B2AA 40%,#008080 100%)',
+      purple:      'linear-gradient(135deg,#5B2D82 0%,#7B3DAF 30%,#5B2D82 60%,#3D1A5A 100%)',
+      amethyst:    'linear-gradient(135deg,#5B2D82 0%,#7B3DAF 40%,#5B2D82 100%)',
+      violet:      'linear-gradient(135deg,#4B0082 0%,#8B00FF 40%,#4B0082 100%)',
+      gold:        'linear-gradient(135deg,#B8860B 0%,#DAA520 40%,#B8860B 100%)',
+      yellow:      'linear-gradient(135deg,#B8860B 0%,#DAA520 40%,#B8860B 100%)',
+      orange:      'linear-gradient(135deg,#CC5500 0%,#FF7700 40%,#CC5500 100%)',
+      black:       'linear-gradient(135deg,#111 0%,#333 40%,#111 100%)',
+    };
+    const defaultSwatch = swatchMap.crimson;
+
+    // ── CSV PARSER ────────────────────────────────────────────────────────────
+    function parseCSV(text) {
+      const lines = text.trim().split('\n');
+      const headers = parseCSVRow(lines[0]).map(h => h.trim());
+      return lines.slice(1).filter(l => l.trim()).map(line => {
+        const vals = parseCSVRow(line);
+        const obj = {};
+        headers.forEach((h, i) => obj[h] = (vals[i] || '').trim());
+        return obj;
+      });
+    }
+    function parseCSVRow(row) {
+      const result = []; let inQ = false, cur = '';
+      for (let i = 0; i < row.length; i++) {
+        if (row[i] === '"' && !inQ) inQ = true;
+        else if (row[i] === '"' && inQ) { if (row[i+1]==='"'){cur+='"';i++;}else inQ=false; }
+        else if (row[i] === ',' && !inQ) { result.push(cur); cur = ''; }
+        else cur += row[i];
       }
-    ];
-
-    let activeFilters = { fabric: 'all', occasion: 'all', region: 'all' };
-    let currentGrid = 3;
-
-    function renderCards(data) {
-      const grid = document.getElementById('sarees-grid');
-      document.getElementById('result-count').textContent = data.length;
-
-      if (data.length === 0) {
-        grid.innerHTML = `<div class="no-results"><h3>No sarees found</h3><p>Try adjusting your filters.</p></div>`;
-        return;
-      }
-
-      grid.innerHTML = data.map(s => `
-        <a href="saree-detail.html" class="saree-card">
-          <div class="card-image">
-            <div class="card-swatch ${s.swatch}">
-              <div class="swatch-overlay"></div>
-              <div class="swatch-shimmer"></div>
-            </div>
-            ${s.badge ? `<div class="card-badge ${s.badgeClass || ''}">${s.badge}</div>` : ''}
-            <div class="card-hover-overlay">
-              <span class="hover-label">View Details</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="card-region">${s.regionLabel}</div>
-            <div class="card-name">${s.name}</div>
-            <div class="card-fabric">${s.fabric.replace('-', ' ')}</div>
-            <div class="card-tags">
-              ${s.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-            </div>
-          </div>
-        </a>
-      `).join('');
+      result.push(cur); return result;
     }
 
-    function getFiltered() {
-      return sarees.filter(s => {
-        const f = activeFilters;
-        return (f.fabric === 'all' || s.fabric === f.fabric) &&
-               (f.occasion === 'all' || s.occasion === f.occasion) &&
-               (f.region === 'all' || s.region === f.region);
+    // ── IMAGE HELPERS ─────────────────────────────────────────────────────────
+    function getDriveUrl(url) {
+      if (!url || !url.trim()) return null;
+      const m = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w600`;
+      return url.startsWith('http') ? url : null;
+    }
+    function getSwatchBg(color) {
+      return swatchMap[(color||'').toLowerCase().trim()] || defaultSwatch;
+    }
+    function cardMedia(s) {
+      const img = getDriveUrl(s.imageUrl);
+      const sw = `<div style="width:100%;height:100%;background:${getSwatchBg(s.color)};position:relative;"><div class="swatch-overlay"></div><div class="swatch-shimmer"></div></div>`;
+      if (!img) return sw;
+      return `<img src="${img}" alt="${s.name}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.outerHTML='${sw.replace(/'/g,"\\'")}'">`;
+    }
+
+    // ── STATE ─────────────────────────────────────────────────────────────────
+    let allSarees = [];
+    let activeFilters = { fabric: 'all', occasion: 'all', region: 'all' };
+
+    // ── RENDER FILTERS ────────────────────────────────────────────────────────
+    function buildFilters(data) {
+      const unique = (key) => [...new Set(data.map(s => s[key]).filter(Boolean))];
+      const capitalize = s => s.charAt(0).toUpperCase() + s.slice(1).replace(/-/g,' ');
+
+      const makeButtons = (containerId, filterKey, values) => {
+        const el = document.getElementById(containerId);
+        const allCount = data.length;
+        let html = `<button class="filter-btn active" data-filter="${filterKey}" data-value="all" onclick="setFilter('${filterKey}','all',this)">
+          All <span class="filter-count">${allCount}</span></button>`;
+        values.forEach(v => {
+          const count = data.filter(s => s[filterKey] === v).length;
+          html += `<button class="filter-btn" data-filter="${filterKey}" data-value="${v}" onclick="setFilter('${filterKey}','${v}',this)">
+            ${capitalize(v)} <span class="filter-count">${count}</span></button>`;
+        });
+        el.innerHTML = html;
+      };
+
+      makeButtons('fabric-filters',   'fabric',   unique('fabric'));
+      makeButtons('occasion-filters', 'occasion', unique('occasion'));
+      makeButtons('region-filters',   'region',   unique('region').map(r =>
+        data.find(s=>s.region===r)?.region).filter(Boolean));
+
+      // Re-apply region labels in region filter
+      const regionEl = document.getElementById('region-filters');
+      regionEl.querySelectorAll('[data-filter="region"]:not([data-value="all"])').forEach(btn => {
+        const r = btn.dataset.value;
+        const label = data.find(s => s.region === r)?.regionLabel || r;
+        btn.firstChild.textContent = label + ' ';
       });
     }
 
-    function setFilter(type, value, btn) {
-      activeFilters[type] = value;
-
-      // Update button states for this group
-      document.querySelectorAll(`[data-filter="${type}"]`).forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      updateActiveTagsUI();
-      renderCards(getFiltered());
+    // ── RENDER CARDS ─────────────────────────────────────────────────────────
+    function renderCards(data) {
+      const grid = document.getElementById('sarees-grid');
+      document.getElementById('result-count').textContent = data.length;
+      if (!data.length) {
+        grid.innerHTML = `<div class="no-results"><h3>No sarees found</h3><p>Try adjusting your filters.</p></div>`;
+        return;
+      }
+      grid.innerHTML = data.map(s => {
+        const tags = (s.tags || '').split('|').filter(Boolean);
+        return `
+        <a href="saree-detail.html?id=${s.id}" class="saree-card">
+          <div class="card-image">
+            ${cardMedia(s)}
+            ${s.badge ? `<div class="card-badge new">${s.badge}</div>` : ''}
+            <div class="card-hover-overlay"><span class="hover-label">View Details</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-region">${s.regionLabel || s.region}</div>
+            <div class="card-name">${s.name}</div>
+            <div class="card-fabric">${(s.fabric||'').replace(/-/g,' ')}</div>
+            <div class="card-tags">${tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          </div>
+        </a>`;
+      }).join('');
     }
 
+    // ── FILTER + SORT ─────────────────────────────────────────────────────────
+    function getFiltered() {
+      return allSarees.filter(s => {
+        const f = activeFilters;
+        return (f.fabric==='all'   || s.fabric===f.fabric) &&
+               (f.occasion==='all' || s.occasion===f.occasion) &&
+               (f.region==='all'   || s.region===f.region);
+      });
+    }
+    function setFilter(type, value, btn) {
+      activeFilters[type] = value;
+      document.querySelectorAll(`[data-filter="${type}"]`).forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      updateActiveTagsUI(); renderCards(getFiltered());
+    }
+    function clearFilter(type) {
+      activeFilters[type] = 'all';
+      document.querySelectorAll(`[data-filter="${type}"]`).forEach(b=>b.classList.remove('active'));
+      const allBtn = document.querySelector(`[data-filter="${type}"][data-value="all"]`);
+      if (allBtn) allBtn.classList.add('active');
+      updateActiveTagsUI(); renderCards(getFiltered());
+    }
+    function clearAllFilters() {
+      activeFilters = { fabric:'all', occasion:'all', region:'all' };
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active', b.dataset.value==='all'));
+      updateActiveTagsUI(); renderCards(getFiltered());
+    }
+    function sortSarees(value) {
+      const data = getFiltered();
+      if (value==='name-asc')  data.sort((a,b)=>a.name.localeCompare(b.name));
+      if (value==='name-desc') data.sort((a,b)=>b.name.localeCompare(a.name));
+      renderCards(data);
+    }
+    function setGrid(cols, btn) {
+      document.getElementById('sarees-grid').className = 'sarees-grid'+(cols===2?' two-col':'');
+      document.querySelectorAll('.grid-toggle').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+    }
     function updateActiveTagsUI() {
-      const container = document.getElementById('active-filters');
-      const tags = [];
-      if (activeFilters.fabric !== 'all') tags.push({ type: 'fabric', label: activeFilters.fabric });
-      if (activeFilters.occasion !== 'all') tags.push({ type: 'occasion', label: activeFilters.occasion });
-      if (activeFilters.region !== 'all') tags.push({ type: 'region', label: activeFilters.region });
-
-      container.innerHTML = tags.map(t => `
-        <span class="active-tag">
-          ${t.label}
-          <button onclick="clearFilter('${t.type}')">×</button>
-        </span>
-      `).join('');
-
+      const tags = Object.entries(activeFilters).filter(([,v])=>v!=='all').map(([k,v])=>({type:k,label:v}));
+      document.getElementById('active-filters').innerHTML = tags.map(t=>`
+        <span class="active-tag">${t.label}<button onclick="clearFilter('${t.type}')">×</button></span>`).join('');
       document.getElementById('page-subtitle').textContent =
         tags.length ? `Filtered by: ${tags.map(t=>t.label).join(', ')}` : 'Showing all pieces from our catalogue';
     }
 
-    function clearFilter(type) {
-      activeFilters[type] = 'all';
-      document.querySelectorAll(`[data-filter="${type}"]`).forEach(b => b.classList.remove('active'));
-      document.querySelector(`[data-filter="${type}"][data-value="all"]`).classList.add('active');
-      updateActiveTagsUI();
-      renderCards(getFiltered());
-    }
-
-    function clearAllFilters() {
-      activeFilters = { fabric: 'all', occasion: 'all', region: 'all' };
-      document.querySelectorAll('.filter-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.value === 'all');
-      });
-      updateActiveTagsUI();
-      renderCards(getFiltered());
-    }
-
-    function sortSarees(value) {
-      const data = getFiltered();
-      if (value === 'name-asc') data.sort((a,b) => a.name.localeCompare(b.name));
-      if (value === 'name-desc') data.sort((a,b) => b.name.localeCompare(a.name));
-      renderCards(data);
-    }
-
-    function setGrid(cols, btn) {
-      currentGrid = cols;
+    // ── FETCH FROM GOOGLE SHEETS ──────────────────────────────────────────────
+    async function loadSarees() {
       const grid = document.getElementById('sarees-grid');
-      grid.className = 'sarees-grid' + (cols === 2 ? ' two-col' : '');
-      document.querySelectorAll('.grid-toggle').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted);font-family:var(--serif);font-size:18px;">Loading collection…</div>`;
 
-    // Handle URL params
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('filter')) {
-      const val = params.get('filter');
-      const btn = document.querySelector(`[data-filter="fabric"][data-value="${val}"]`) ||
-                  document.querySelector(`[data-filter="occasion"][data-value="${val}"]`);
-      if (btn) {
-        const type = btn.dataset.filter;
-        setFilter(type, val, btn);
+      try {
+        const res = await fetch(SHEET_URL);
+        if (!res.ok) throw new Error('Sheet not reachable');
+        const text = await res.text();
+        allSarees = parseCSV(text).filter(s => s.id && s.name);
+
+        if (!allSarees.length) throw new Error('No sarees found in sheet');
+
+        buildFilters(allSarees);
+
+        // Apply URL params
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('filter')) {
+          const v = params.get('filter');
+          const btn = document.querySelector(`[data-filter="fabric"][data-value="${v}"]`) ||
+                      document.querySelector(`[data-filter="occasion"][data-value="${v}"]`);
+          if (btn) { activeFilters[btn.dataset.filter] = v; btn.classList.add('active'); updateActiveTagsUI(); }
+        }
+        if (params.get('region')) {
+          const v = params.get('region');
+          const btn = document.querySelector(`[data-filter="region"][data-value="${v}"]`);
+          if (btn) { activeFilters.region = v; btn.classList.add('active'); updateActiveTagsUI(); }
+        }
+
+        renderCards(getFiltered());
+
+      } catch (err) {
+        console.error(err);
+        grid.innerHTML = `
+          <div style="grid-column:1/-1;text-align:center;padding:60px 24px;">
+            <div style="font-family:var(--serif);font-size:24px;color:var(--text-secondary);margin-bottom:12px;">Collection coming soon</div>
+            <div style="font-size:13px;color:var(--text-muted);max-width:400px;margin:0 auto;">
+              The Google Sheet isn't connected yet. Add your Sheet ID to the SHEET_ID constant in the page code.
+            </div>
+          </div>`;
+        // Clear filter loading states
+        ['fabric-filters','occasion-filters','region-filters'].forEach(id => {
+          document.getElementById(id).innerHTML = '<span style="font-size:12px;color:var(--text-muted)">—</span>';
+        });
       }
     }
-    if (params.get('region')) {
-      const val = params.get('region');
-      const btn = document.querySelector(`[data-filter="region"][data-value="${val}"]`);
-      if (btn) setFilter('region', val, btn);
-    }
 
-    // Initial render
-    renderCards(getFiltered());
+    loadSarees();
   </script>
 </body>
 </html>

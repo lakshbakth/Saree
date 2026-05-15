@@ -756,87 +756,10 @@
       <a href="collection.html" class="view-all">View All</a>
     </div>
 
-    <div class="sarees-grid">
-
-      <!-- Large card -->
-      <a href="saree-detail.html" class="saree-card large">
-        <div class="card-image">
-          <div class="card-swatch swatch-kanjivaram">
-            <div class="swatch-overlay"></div>
-            <div class="swatch-shimmer"></div>
-          </div>
-          <div class="card-badge">New Arrival</div>
-        </div>
-        <div class="card-body">
-          <div class="card-region">Tamil Nadu</div>
-          <div class="card-name">Crimson Kanjivaram Silk</div>
-          <p class="card-desc">A masterpiece in deep crimson with gold zari borders. Woven on traditional pit looms in Kanchipuram.</p>
-          <div class="card-tags">
-            <span class="tag">Silk</span>
-            <span class="tag">Wedding</span>
-            <span class="tag">Zari Work</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Regular cards -->
-      <a href="saree-detail.html" class="saree-card">
-        <div class="card-image">
-          <div class="card-swatch swatch-banarasi">
-            <div class="swatch-overlay"></div>
-            <div class="swatch-shimmer"></div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-region">Uttar Pradesh</div>
-          <div class="card-name">Royal Banarasi Silk</div>
-          <p class="card-desc">Deep royal blue with intricate silver brocade. A symbol of Varanasi's 2,000-year weaving legacy.</p>
-          <div class="card-tags">
-            <span class="tag">Silk</span>
-            <span class="tag">Brocade</span>
-            <span class="tag">Bridal</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="saree-detail.html" class="saree-card">
-        <div class="card-image">
-          <div class="card-swatch swatch-chanderi">
-            <div class="swatch-overlay"></div>
-            <div class="swatch-shimmer"></div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-region">Madhya Pradesh</div>
-          <div class="card-name">Ivory Chanderi Silk Cotton</div>
-          <p class="card-desc">Gossamer-light ivory weave with delicate butti motifs. Perfect for formal occasions and festivals.</p>
-          <div class="card-tags">
-            <span class="tag">Silk Cotton</span>
-            <span class="tag">Festive</span>
-            <span class="tag">Lightweight</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="saree-detail.html" class="saree-card">
-        <div class="card-image">
-          <div class="card-swatch swatch-bandhani">
-            <div class="swatch-overlay"></div>
-            <div class="swatch-shimmer"></div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-region">Gujarat</div>
-          <div class="card-name">Pink Bandhani Georgette</div>
-          <p class="card-desc">Vibrant tie-dye artistry in rose and magenta. Hand-knotted by artisans in Jamnagar.</p>
-          <div class="card-tags">
-            <span class="tag">Georgette</span>
-            <span class="tag">Tie-Dye</span>
-            <span class="tag">Casual</span>
-          </div>
-        </div>
-      </a>
-
+    <div class="sarees-grid" id="featured-grid">
+      <div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted);font-family:var(--serif);font-size:20px;">
+        Loading featured sarees…
+      </div>
     </div>
   </section>
 
@@ -958,23 +881,124 @@
   </footer>
 
   <script>
-    // Navbar scroll effect
+    // ── CONFIG — same Sheet ID as collection.html ─────────────────────────────
+    const SHEET_ID = 'YOUR_SHEET_ID_HERE';
+    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
+
+    // ── COLOR → SWATCH MAP ────────────────────────────────────────────────────
+    const swatchMap = {
+      crimson:'linear-gradient(135deg,#8B0000 0%,#C41E3A 30%,#8B0000 70%,#6B0000 100%)',
+      red:'linear-gradient(135deg,#8B0000 0%,#C41E3A 40%,#8B0000 100%)',
+      maroon:'linear-gradient(135deg,#800000 0%,#B22222 40%,#800000 100%)',
+      blue:'linear-gradient(135deg,#1B3A6B 0%,#2E5FA3 30%,#1B3A6B 60%,#142D52 100%)',
+      'royal blue':'linear-gradient(135deg,#1B3A6B 0%,#2E5FA3 40%,#1B3A6B 100%)',
+      navy:'linear-gradient(135deg,#001a4d 0%,#003080 40%,#001a4d 100%)',
+      ivory:'linear-gradient(135deg,#F5F0E8 0%,#E8DCC8 30%,#F5F0E8 60%,#EDE4D0 100%)',
+      white:'linear-gradient(135deg,#F5F0E8 0%,#E8DCC8 40%,#F5F0E8 100%)',
+      cream:'linear-gradient(135deg,#FFF8E7 0%,#EDE0C4 40%,#FFF8E7 100%)',
+      pink:'linear-gradient(135deg,#C44B8A 0%,#E8729A 30%,#C44B8A 60%,#A33572 100%)',
+      rose:'linear-gradient(135deg,#C44B8A 0%,#E8729A 40%,#C44B8A 100%)',
+      green:'linear-gradient(135deg,#2D6B45 0%,#3D8B5E 30%,#2D6B45 60%,#1E4A30 100%)',
+      emerald:'linear-gradient(135deg,#2D6B45 0%,#3D8B5E 40%,#2D6B45 100%)',
+      purple:'linear-gradient(135deg,#5B2D82 0%,#7B3DAF 30%,#5B2D82 60%,#3D1A5A 100%)',
+      amethyst:'linear-gradient(135deg,#5B2D82 0%,#7B3DAF 40%,#5B2D82 100%)',
+      gold:'linear-gradient(135deg,#B8860B 0%,#DAA520 40%,#B8860B 100%)',
+      orange:'linear-gradient(135deg,#CC5500 0%,#FF7700 40%,#CC5500 100%)',
+      teal:'linear-gradient(135deg,#008080 0%,#20B2AA 40%,#008080 100%)',
+    };
+    const defaultSwatch = swatchMap.crimson;
+
+    // ── CSV PARSER ────────────────────────────────────────────────────────────
+    function parseCSV(text) {
+      const lines = text.trim().split('\n');
+      const headers = parseCSVRow(lines[0]).map(h => h.trim());
+      return lines.slice(1).filter(l => l.trim()).map(line => {
+        const vals = parseCSVRow(line);
+        const obj = {};
+        headers.forEach((h, i) => obj[h] = (vals[i] || '').trim());
+        return obj;
+      });
+    }
+    function parseCSVRow(row) {
+      const result = []; let inQ = false, cur = '';
+      for (let i = 0; i < row.length; i++) {
+        if (row[i]==='"'&&!inQ) inQ=true;
+        else if (row[i]==='"'&&inQ){if(row[i+1]==='"'){cur+='"';i++;}else inQ=false;}
+        else if (row[i]===','&&!inQ){result.push(cur);cur='';}
+        else cur+=row[i];
+      }
+      result.push(cur); return result;
+    }
+    function getDriveUrl(url) {
+      if (!url||!url.trim()) return null;
+      const m = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w600`;
+      return url.startsWith('http') ? url : null;
+    }
+    function getSwatchBg(color) {
+      return swatchMap[(color||'').toLowerCase().trim()] || defaultSwatch;
+    }
+    function cardMedia(s, large) {
+      const img = getDriveUrl(s.imageUrl);
+      const sw = `<div style="width:100%;height:100%;background:${getSwatchBg(s.color)};position:relative;"><div class="swatch-overlay"></div><div class="swatch-shimmer"></div></div>`;
+      if (!img) return sw;
+      return `<img src="${img}" alt="${s.name}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.outerHTML='${sw.replace(/'/g,"\\'")}'">`
+    }
+
+    // ── RENDER FEATURED GRID ──────────────────────────────────────────────────
+    function renderFeatured(sarees) {
+      const grid = document.getElementById('featured-grid');
+      if (!sarees.length) {
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted);font-family:var(--serif);font-size:18px;">No featured sarees yet — mark rows as featured=yes in your Sheet.</div>`;
+        return;
+      }
+      grid.innerHTML = sarees.slice(0, 4).map((s, i) => {
+        const tags = (s.tags||'').split('|').filter(Boolean);
+        const large = i === 0;
+        return `
+        <a href="saree-detail.html?id=${s.id}" class="saree-card${large?' large':''}">
+          <div class="card-image">
+            ${cardMedia(s, large)}
+            ${s.badge ? `<div class="card-badge">${s.badge}</div>` : ''}
+          </div>
+          <div class="card-body">
+            <div class="card-region">${s.regionLabel||s.region}</div>
+            <div class="card-name">${s.name}</div>
+            <p class="card-desc">${s.shortDesc||''}</p>
+            <div class="card-tags">${tags.slice(0,3).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          </div>
+        </a>`;
+      }).join('');
+    }
+
+    // ── FETCH ─────────────────────────────────────────────────────────────────
+    async function loadFeatured() {
+      try {
+        const res = await fetch(SHEET_URL);
+        if (!res.ok) throw new Error();
+        const text = await res.text();
+        const all = parseCSV(text).filter(s => s.id && s.name);
+        const featured = all.filter(s => s.featured?.toLowerCase() === 'yes');
+        renderFeatured(featured.length ? featured : all.slice(0, 4));
+      } catch {
+        document.getElementById('featured-grid').innerHTML = `
+          <div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted);font-family:var(--serif);font-size:18px;">
+            Connect your Google Sheet to display sarees here.
+          </div>`;
+      }
+    }
+
+    // ── UI ────────────────────────────────────────────────────────────────────
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
-
-    // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.1 });
-
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    loadFeatured();
   </script>
 </body>
 </html>
