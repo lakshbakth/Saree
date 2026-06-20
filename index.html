@@ -11,16 +11,16 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #080808;
-      --surface: #111111;
-      --surface-2: #1a1a1a;
-      --border: #222222;
-      --gold: #C9A462;
-      --gold-muted: rgba(201,164,98,0.12);
-      --gold-light: #E2C17A;
-      --text: #F0EAE0;
-      --text-secondary: #888880;
-      --text-muted: #555550;
+      --bg: #ffffff;
+      --surface: #faf8f5;
+      --surface-2: #f3efe8;
+      --border: #e5ddd0;
+      --gold: #9A7420;
+      --gold-muted: rgba(154,116,32,0.1);
+      --gold-light: #7A5C10;
+      --text: #1c1510;
+      --text-secondary: #6b6058;
+      --text-muted: #a09080;
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'Inter', system-ui, sans-serif;
     }
@@ -45,9 +45,9 @@
       align-items: center;
       justify-content: space-between;
       padding: 20px 48px;
-      background: rgba(8,8,8,0.85);
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid transparent;
+      border-bottom: 1px solid var(--border);
       transition: border-color 0.3s;
     }
     nav.scrolled { border-bottom-color: var(--border); }
@@ -107,8 +107,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,164,98,0.06) 0%, transparent 70%),
-        linear-gradient(180deg, #080808 0%, #0d0a06 50%, #080808 100%);
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(154,116,32,0.07) 0%, transparent 70%),
+        linear-gradient(180deg, #ffffff 0%, #fdf9f2 50%, #ffffff 100%);
     }
 
     .hero-pattern {
@@ -484,7 +484,7 @@
 
     .story-visual-bg {
       width: 100%; height: 100%;
-      background: linear-gradient(135deg, #1a0f00 0%, #2a1800 40%, #1a0f00 100%);
+      background: linear-gradient(135deg, #f5ede0 0%, #eedcc8 40%, #f5ede0 100%);
       display: flex;
       align-items: center;
       justify-content: center;
